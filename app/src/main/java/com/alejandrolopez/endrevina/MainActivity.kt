@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     var attempts : Int = 1
 
     lateinit var input : TextInputEditText
+    lateinit var logText : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +38,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         input = findViewById<TextInputEditText>(R.id.userInputText)
+        logText = findViewById<TextView>(R.id.logText)
 
         numberToGuess = generateRandomNumber()
 
@@ -59,6 +61,7 @@ class MainActivity : AppCompatActivity() {
             attempts++
             Toast.makeText(this, "El número es menor a " + userNumber, Toast.LENGTH_SHORT).show()
             input.text?.clear()
+            logText.setText("El número es menor a " + userNumber + "\n" + logText.text.toString())
             return
         }
 
@@ -66,11 +69,12 @@ class MainActivity : AppCompatActivity() {
             attempts++
             Toast.makeText(this, "El número es major a " + userNumber, Toast.LENGTH_SHORT).show()
             input.text?.clear()
+            logText.setText("El número es major a " + userNumber + "\n" + logText.text.toString())
             return
         }
 
         generateAlert(attempts)
-
+        logText.setText("Has endevinat el numero " + numberToGuess + " en " + attempts + " intents\n" + logText.text.toString())
         numberToGuess = generateRandomNumber()
         input.text?.clear()
     }
@@ -80,7 +84,7 @@ class MainActivity : AppCompatActivity() {
                     .setTitle("Alerta d'Andrevina")
                     .setPositiveButton("Tanca") { dialog, which -> dialog.dismiss() }
                     .setCancelable(false)
-                    .setMessage("Has endevinat el numero en " + attempts + " intents")
+                    .setMessage("Has endevinat el numero " + numberToGuess + " en " + attempts + " intents")
                     .create()
         alert.show()
     }

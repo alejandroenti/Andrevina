@@ -51,4 +51,32 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
         app:layout_constraintVertical_bias="0.092" />
 
+    <ScrollView
+        android:layout_width="310dp"
+        android:layout_height="305dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/submitNumberButton">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/logText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="?attr/shapeCornerSizeExtraSmall"
+                android:paddingStart="?attr/shapeCornerSizeExtraSmall"
+                android:paddingLeft="?attr/shapeCornerSizeExtraSmall"
+                android:paddingTop="?attr/shapeCornerSizeExtraSmall"
+                android:paddingEnd="?attr/shapeCornerSizeExtraSmall"
+                android:paddingRight="?attr/shapeCornerSizeExtraSmall"
+                android:paddingBottom="?attr/shapeCornerSizeExtraSmall"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
