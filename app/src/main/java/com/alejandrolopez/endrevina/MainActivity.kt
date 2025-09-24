@@ -2,9 +2,11 @@ package com.alejandrolopez.endrevina
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -15,10 +17,9 @@ class MainActivity : AppCompatActivity() {
 
     var numberToGuess : Int = 0
     var random : Random = Random.Default
-    var attemps : Int = 1
+    var attempts : Int = 1
 
     lateinit var input : TextInputEditText
-    lateinit var message : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +37,6 @@ class MainActivity : AppCompatActivity() {
             }
 
         input = findViewById<TextInputEditText>(R.id.userInputText)
-        message = findViewById<TextView>(R.id.messageText)
 
         numberToGuess = generateRandomNumber()
 
@@ -56,19 +56,32 @@ class MainActivity : AppCompatActivity() {
         var userNumber = input.text.toString().toInt()
 
         if (userNumber > numberToGuess) {
-            attemps++
-            Toast.makeText(this, "El número es menor a " + userNumber, Toast.LENGTH_LONG).show()
+            attempts++
+            Toast.makeText(this, "El número es menor a " + userNumber, Toast.LENGTH_SHORT).show()
             input.text?.clear()
             return
         }
 
         if (userNumber < numberToGuess) {
-            attemps++
-            Toast.makeText(this, "El número es major a " + userNumber, Toast.LENGTH_LONG).show()
+            attempts++
+            Toast.makeText(this, "El número es major a " + userNumber, Toast.LENGTH_SHORT).show()
             input.text?.clear()
             return
         }
 
-        message.setText("Has endevinat el numero en " + attemps + " intents")
+        generateAlert(attempts)
+
+        numberToGuess = generateRandomNumber()
+        input.text?.clear()
+    }
+
+    fun generateAlert(attempts : Int) {
+        val alert = AlertDialog.Builder(this)
+                    .setTitle("Alerta d'Andrevina")
+                    .setPositiveButton("Tanca") { dialog, which -> dialog.dismiss() }
+                    .setCancelable(false)
+                    .setMessage("Has endevinat el numero en " + attempts + " intents")
+                    .create()
+        alert.show()
     }
 }
