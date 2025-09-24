@@ -77,6 +77,7 @@ class MainActivity : AppCompatActivity() {
         logText.setText("Has endevinat el numero " + numberToGuess + " en " + attempts + " intents\n" + logText.text.toString())
         numberToGuess = generateRandomNumber()
         input.text?.clear()
+        attempts = 1
     }
 
     fun generateAlert(attempts : Int) {
