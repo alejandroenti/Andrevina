@@ -57,13 +57,15 @@ class MainActivity : AppCompatActivity() {
 
         if (userNumber > numberToGuess) {
             attemps++
-            message.setText("El numero és menor que " + userNumber)
+            Toast.makeText(this, "El número es menor a " + userNumber, Toast.LENGTH_LONG).show()
+            input.text?.clear()
             return
         }
 
         if (userNumber < numberToGuess) {
             attemps++
-            message.setText("El numero és major que " + userNumber)
+            Toast.makeText(this, "El número es major a " + userNumber, Toast.LENGTH_LONG).show()
+            input.text?.clear()
             return
         }
 
