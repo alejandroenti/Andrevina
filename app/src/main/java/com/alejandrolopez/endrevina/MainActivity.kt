@@ -1,7 +1,10 @@
 package com.alejandrolopez.endrevina
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.widget.Button
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -14,6 +17,10 @@ import com.google.android.material.textfield.TextInputEditText
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        public var records: ArrayList<Record> = ArrayList<Record>()
+    }
 
     var numberToGuess : Int = 0
     var random : Random = Random.Default
@@ -35,6 +42,13 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.submitNumberButton)
             .setOnClickListener {
                 processAttempt()
+            }
+
+        findViewById<Button>(R.id.goToHallOfFameButton)
+            .setOnClickListener {
+                val hallOfFameIntent = Intent(this, HallOfFameActivity::class.java)
+                intent.putExtra("records", records)
+                startActivity(hallOfFameIntent)
             }
 
         input = findViewById<TextInputEditText>(R.id.userInputText)
@@ -79,14 +93,27 @@ class MainActivity : AppCompatActivity() {
         input.text?.clear()
         attempts = 1
     }
-
     fun generateAlert(attempts : Int) {
-        val alert = AlertDialog.Builder(this)
-                    .setTitle("Alerta d'Andrevina")
-                    .setPositiveButton("Tanca") { dialog, which -> dialog.dismiss() }
-                    .setCancelable(false)
-                    .setMessage("Has endevinat el numero " + numberToGuess + " en " + attempts + " intents")
-                    .create()
+
+        val input: TextInputEditText = TextInputEditText(this).apply {
+            hint = "Introdueix un nom d'usuari"
+        }
+
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder
+            .setTitle("Alerta d'Andrevina")
+            .setPositiveButton("Desa record") { dialog, which -> {
+                if (input.text.toString() != "") {
+                    records.add(Record(input.text.toString(), attempts))
+                    Toast.makeText(this, "Record desat correctament", Toast.LENGTH_LONG).show()
+                    dialog.dismiss()
+                }
+            }}
+            .setNegativeButton("No desar") { dialog, which -> dialog.dismiss()}
+            .setMessage("Has endevinat el numero " + numberToGuess + " en " + attempts + " intents")
+            .setView(input)
+
+        val alert: AlertDialog = builder.create()
         alert.show()
     }
 }

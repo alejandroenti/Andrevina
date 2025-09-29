@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
-        android:text="Endrevina"
+        android:text="Andrevina"
         android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:text="Button"
+        android:text="Tramet intent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -52,12 +52,15 @@
         app:layout_constraintVertical_bias="0.092" />
 
     <ScrollView
-        android:layout_width="310dp"
-        android:layout_height="305dp"
+        android:id="@+id/scrollView2"
+        android:layout_width="304dp"
+        android:layout_height="224dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/submitNumberButton">
+        app:layout_constraintTop_toBottomOf="@+id/submitNumberButton"
+        app:layout_constraintVertical_bias="0.184">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -78,5 +81,15 @@
                 android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/goToHallOfFameButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ves al Hall of Fame"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
