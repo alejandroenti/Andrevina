@@ -30,9 +30,9 @@ class HallOfFameActivity : AppCompatActivity()  {
                 startActivity(hallOfFameIntent)
             }
 
-        tableString = "Noms".padEnd(35, ' ') + "  Intents".padEnd(8, ' ')
+        tableString = "Noms".padEnd(35, ' ') + "  Intents" + "\n\n"
         for (record in MainActivity.records) {
-            tableString += record.name.padEnd(35, ' ') + "  " + record.intents.toString().padEnd(8, ' ')
+            tableString += record.name.padEnd(35, ' ') + "  " + record.intents.toString().padEnd(8, ' ') + "\n"
         }
 
         table.setText(tableString)

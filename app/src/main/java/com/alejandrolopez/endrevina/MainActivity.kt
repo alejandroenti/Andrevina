@@ -2,10 +2,8 @@ package com.alejandrolopez.endrevina
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.InputType
 import android.widget.Button
 import android.widget.EditText
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -52,7 +50,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         input = findViewById<TextInputEditText>(R.id.userInputText)
-        logText = findViewById<TextView>(R.id.logText)
+        logText = findViewById<TextView>(R.id.tableTextView)
 
         numberToGuess = generateRandomNumber()
 
@@ -95,20 +93,20 @@ class MainActivity : AppCompatActivity() {
     }
     fun generateAlert(attempts : Int) {
 
-        val input: TextInputEditText = TextInputEditText(this).apply {
+        val input: EditText = EditText(this).apply {
             hint = "Introdueix un nom d'usuari"
         }
 
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
         builder
             .setTitle("Alerta d'Andrevina")
-            .setPositiveButton("Desa record") { dialog, which -> {
-                if (input.text.toString() != "") {
+            .setPositiveButton("Desa record") { dialog, which ->
+                if (input.text.toString().isNotBlank()) {
                     records.add(Record(input.text.toString(), attempts))
                     Toast.makeText(this, "Record desat correctament", Toast.LENGTH_LONG).show()
-                    dialog.dismiss()
                 }
-            }}
+                Toast.makeText(this, "Record no serà desat", Toast.LENGTH_LONG).show()
+            }
             .setNegativeButton("No desar") { dialog, which -> dialog.dismiss()}
             .setMessage("Has endevinat el numero " + numberToGuess + " en " + attempts + " intents")
             .setView(input)
