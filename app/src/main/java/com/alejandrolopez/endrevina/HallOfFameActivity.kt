@@ -1,6 +1,8 @@
 package com.alejandrolopez.endrevina
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 class HallOfFameActivity : AppCompatActivity()  {
 
     private lateinit var table : TextView
+    private var tableString : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,9 +24,17 @@ class HallOfFameActivity : AppCompatActivity()  {
             insets
         }
 
-        val records = intent.getSerializableExtra("records")
-
         table = findViewById<TextView>(R.id.tableTextView)
-        table.setText(records.toString())
+        findViewById<Button>(R.id.goToMainButton).setOnClickListener {
+                val hallOfFameIntent = Intent(this, MainActivity::class.java)
+                startActivity(hallOfFameIntent)
+            }
+
+        tableString = "Noms".padEnd(35, ' ') + "  Intents".padEnd(8, ' ')
+        for (record in MainActivity.records) {
+            tableString += record.name.padEnd(35, ' ') + "  " + record.intents.toString().padEnd(8, ' ')
+        }
+
+        table.setText(tableString)
     }
 }

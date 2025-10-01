@@ -11,21 +11,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tornar"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="645dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tableTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/goToMainButton"
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="316dp"
+        android:layout_height="543dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.183" />
+        app:layout_constraintVertical_bias="0.373">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tableTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="?attr/shapeCornerSizeExtraSmall"
+                android:paddingStart="?attr/shapeCornerSizeExtraSmall"
+                android:paddingLeft="?attr/shapeCornerSizeExtraSmall"
+                android:paddingTop="?attr/shapeCornerSizeExtraSmall"
+                android:paddingEnd="?attr/shapeCornerSizeExtraSmall"
+                android:paddingRight="?attr/shapeCornerSizeExtraSmall"
+                android:paddingBottom="?attr/shapeCornerSizeExtraSmall"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </ScrollView>
 
     <TextView
         android:id="@+id/textView2"

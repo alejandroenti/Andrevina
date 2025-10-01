@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HallOfFame"
+            android:name=".HallOfFameActivity"
             android:exported="true">
         </activity>
     </application>
